@@ -41,7 +41,9 @@ public class A2BMapperWithEverythingMockedWithoutRunnerTest {
 
         final B output = sut.map(input);
 
+        assertThat(output).isNotNull();
         assertThat(output.getFullName()).isEqualTo(expectedFullName);
+        assertThat(output.getAge()).isEqualTo(expectedAge);
     }
 
 }

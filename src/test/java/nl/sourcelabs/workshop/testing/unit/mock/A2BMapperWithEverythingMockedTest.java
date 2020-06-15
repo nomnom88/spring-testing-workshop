@@ -3,11 +3,6 @@ package nl.sourcelabs.workshop.testing.unit.mock;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
-import nl.sourcelabs.workshop.testing.unit.mock.A;
-import nl.sourcelabs.workshop.testing.unit.mock.A2BMapper;
-import nl.sourcelabs.workshop.testing.unit.mock.AgeLookupService;
-import nl.sourcelabs.workshop.testing.unit.mock.B;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

@@ -28,10 +28,9 @@ public class ServiceTestWithoutArgCaptor {
         assertThat(sentRequest).isNotNull();
         assertThat(sentRequest.getMessage()).isEqualTo(message);
         assertThat(sentRequest.getHeader()).startsWith(expectedPrefix);
-        assertThatCode(() -> {
-            DateTimeFormatter.ISO_DATE.parse(sentRequest.getHeader()
-                    .replace(expectedPrefix, ""));
-        }).doesNotThrowAnyException();
+        final String headerWithoutPrefix = sentRequest.getHeader()
+                .replace(expectedPrefix, "");
+        assertThatCode(() -> DateTimeFormatter.ISO_DATE.parse(headerWithoutPrefix)).doesNotThrowAnyException();
     }
 
     @Before

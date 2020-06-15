@@ -13,6 +13,7 @@ public class ServiceTest {
     private static final String MATH_UTIL_FIELD_NAME = "mathUtil";
 
     private MathUtil mathUtil;
+
     private Service sut;
 
     @Before

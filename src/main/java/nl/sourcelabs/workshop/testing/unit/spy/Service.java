@@ -8,7 +8,15 @@ public class Service {
     private final MathUtil mathUtil;
 
     public int add(final int a, final int b) {
-        return mathUtil.add(a, b);
+        final int result = mathUtil.doVeryVeryComplicatedCalculation(a, b);
+
+        validateResult(result);
+
+        return result;
+    }
+
+    private void validateResult(final int result) {
+        // Complicated validation logic
     }
 
 }

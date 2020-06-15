@@ -1,0 +1,14 @@
+== What is a Mock?
+
+Without Mocking
+
+[plantuml,diagram-classes,svg]
+....
+@startuml
+
+SUT -> A : doSomethindAndReturnResult("MyParameter")
+note over A: Here we actually do that something.
+A -> SUT : Real result
+
+@enduml
+....

@@ -28,7 +28,7 @@ public class ServiceTest {
 
         assertThat(result).isEqualTo(expected);
 
-        verify(mathUtil).add(a, b);
+        verify(mathUtil).doVeryVeryComplicatedCalculation(a, b);
     }
 
 

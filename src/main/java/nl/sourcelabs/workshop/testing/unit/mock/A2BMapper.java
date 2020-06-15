@@ -14,8 +14,7 @@ public class A2BMapper {
         final String firstName = a.getFirstName();
         final String lastName = a.getLastName();
 
-        final String fullName = firstName + " " + lastName;
-
+        final String fullName = getFullName(firstName, lastName);
         b.setFullName(fullName);
 
         final Integer age = ageLookupService.lookupAge(firstName, lastName);
@@ -23,6 +22,10 @@ public class A2BMapper {
         b.setAge(age);
 
         return b;
+    }
+
+    private String getFullName(final String firstName, final String lastName) {
+        return firstName + " " + lastName;
     }
 
 }
