@@ -4,13 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import nl.sourcelabs.workshop.testing.unit.mock.A;
-import nl.sourcelabs.workshop.testing.unit.mock.A2BMapper;
-import nl.sourcelabs.workshop.testing.unit.mock.AgeLookupService;
-import nl.sourcelabs.workshop.testing.unit.mock.B;
-
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 public class A2BMapperWithEverythingMockedWithoutRunnerTest {
@@ -21,7 +16,7 @@ public class A2BMapperWithEverythingMockedWithoutRunnerTest {
 
     private A2BMapper sut;
 
-    @Before
+    @BeforeEach
     public void doWhatTheMockitoRunnerDoesForUs() {
         input = Mockito.mock(A.class);
         ageLookupService = mock(AgeLookupService.class);

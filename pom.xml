@@ -9,7 +9,7 @@
 
     <properties>
         <lombok.version>1.18.10</lombok.version>
-        <spring-boot.version>2.2.4.RELEASE</spring-boot.version>
+        <spring-boot.version>2.3.1.RELEASE</spring-boot.version>
 
         <!-- Java -->
         <maven.compiler.target>11</maven.compiler.target>
@@ -21,6 +21,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <version>${spring-boot.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>junit-vintage-engine</artifactId>
+                    <groupId>org.junit.vintage</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>

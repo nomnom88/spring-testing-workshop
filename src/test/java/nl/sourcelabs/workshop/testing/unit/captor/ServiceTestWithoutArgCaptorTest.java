@@ -5,12 +5,12 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.time.format.DateTimeFormatter;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import lombok.Getter;
 
-public class ServiceTestWithoutArgCaptor {
+public class ServiceTestWithoutArgCaptorTest {
 
     private MyClient client;
 
@@ -33,7 +33,7 @@ public class ServiceTestWithoutArgCaptor {
         assertThatCode(() -> DateTimeFormatter.ISO_DATE.parse(headerWithoutPrefix)).doesNotThrowAnyException();
     }
 
-    @Before
+    @BeforeEach
     public void setup() {
         client = new MyClient();
         sut = new Service(client);
