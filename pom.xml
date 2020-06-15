@@ -15,9 +15,9 @@
         <lombok.version>1.18.10</lombok.version>
         <spring-boot.version>2.3.1.RELEASE</spring-boot.version>
         <spring-boot-starter-data-jpa.version>2.3.0.RELEASE</spring-boot-starter-data-jpa.version>
+        <ojdbc8.version>19.6.0.0</ojdbc8.version>
 
         <assertj-core.version>3.16.1</assertj-core.version>
-
         <h2.version>1.4.200</h2.version>
     </properties>
 
@@ -49,16 +49,20 @@
             <version>${spring-boot-starter-data-jpa.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>${h2.version}</version>
-        </dependency>
-
         <!-- END SPRING -->
 
+        <!-- DB -->
+
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>${ojdbc8.version}</version>
+        </dependency>
+
+        <!-- END DB -->
 
         <!-- TESTING -->
+
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
@@ -66,8 +70,14 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- TESTING -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+            <scope>test</scope>
+        </dependency>
 
+        <!-- TESTING -->
 
     </dependencies>
 
@@ -76,6 +86,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.22.2</version>
             </plugin>
         </plugins>
     </build>

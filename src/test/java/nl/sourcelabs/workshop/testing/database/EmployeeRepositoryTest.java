@@ -2,6 +2,9 @@ package nl.sourcelabs.workshop.testing.database;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Optional;
+import java.util.UUID;
+
 import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
@@ -28,14 +31,44 @@ public class EmployeeRepositoryTest {
     private EntityManager entityManager;
 
     @Autowired
-    private EmployeeRepository userRepository;
+    private EmployeeRepository sut;
 
     @Test
     void injectedComponentsAreNotNull(){
         assertThat(dataSource).isNotNull();
         assertThat(jdbcTemplate).isNotNull();
         assertThat(entityManager).isNotNull();
-        assertThat(userRepository).isNotNull();
+        assertThat(sut).isNotNull();
+    }
+
+    @Test
+    void findTheBestEmployee() {
+
+        final String expectedFirstName = "Duncan";
+        final String expectedLastName = "Campbell";
+        final UUID expectedId = UUID.randomUUID();
+
+        makeAndPersistEmployee(expectedFirstName, expectedLastName, expectedId);
+
+        final Optional<Employee> result = sut.findTheBestEmployee();
+
+        assertThat(result).isNotNull();
+        assertThat(result).isPresent();
+
+        final Employee employeeResult = result.orElseThrow(IllegalStateException::new);
+        assertThat(employeeResult.getFirstName()).isEqualTo(expectedFirstName);
+        assertThat(employeeResult.getLastName()).isEqualTo(expectedLastName);
+        assertThat(employeeResult.getId()).isEqualTo(expectedId);
+
+    }
+
+    private Employee makeAndPersistEmployee(final String expectedFirstName, final String expectedLastName, final UUID expectedId) {
+        final Employee employee = new Employee();
+        employee.setFirstName(expectedFirstName);
+        employee.setLastName(expectedLastName);
+        employee.setId(expectedId);
+        entityManager.persist(employee);
+        return employee;
     }
 
 }
