@@ -1,5 +1,6 @@
 package nl.sourcelabs.workshop.testing.database;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -12,5 +13,5 @@ public interface EmployeeRepository extends PagingAndSortingRepository<Employee,
     nativeQuery = false) //set this to true to run native SQL, keep dialects in mind
     Optional<Employee> findTheBestEmployee();
 
-    Optional<Employee> findByFirstNameIsLike(String firstNameLike);
+    List<Employee> findByFirstNameIsLike(String firstNameLike);
 }
