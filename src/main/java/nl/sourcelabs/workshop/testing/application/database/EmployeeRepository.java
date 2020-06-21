@@ -1,4 +1,4 @@
-package nl.sourcelabs.workshop.testing.database;
+package nl.sourcelabs.workshop.testing.application.database;
 
 import java.util.List;
 import java.util.Optional;

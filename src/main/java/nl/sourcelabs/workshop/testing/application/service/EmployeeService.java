@@ -1,11 +1,11 @@
-package nl.sourcelabs.workshop.testing.service;
+package nl.sourcelabs.workshop.testing.application.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import nl.sourcelabs.workshop.testing.database.Employee;
-import nl.sourcelabs.workshop.testing.database.EmployeeRepository;
-import nl.sourcelabs.workshop.testing.exception.BestEmployeeMissingException;
+import nl.sourcelabs.workshop.testing.application.database.Employee;
+import nl.sourcelabs.workshop.testing.application.database.EmployeeRepository;
+import nl.sourcelabs.workshop.testing.application.exception.BestEmployeeMissingException;
 
 import org.springframework.stereotype.Service;
 

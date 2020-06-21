@@ -1,4 +1,4 @@
-package nl.sourcelabs.workshop.testing.database;
+package nl.sourcelabs.workshop.testing.application.database;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

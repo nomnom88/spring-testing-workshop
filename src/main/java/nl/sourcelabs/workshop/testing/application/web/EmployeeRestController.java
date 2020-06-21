@@ -1,9 +1,9 @@
-package nl.sourcelabs.workshop.testing.web;
+package nl.sourcelabs.workshop.testing.application.web;
 
 import java.util.List;
 
-import nl.sourcelabs.workshop.testing.EmployeeService;
-import nl.sourcelabs.workshop.testing.database.Employee;
+import nl.sourcelabs.workshop.testing.application.database.Employee;
+import nl.sourcelabs.workshop.testing.application.service.EmployeeService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,9 +18,13 @@ public class EmployeeRestController {
     private final EmployeeService employeeService;
 
     @GetMapping(path = "/api/employees")
-    public List<Employee> getAllEmployees(@RequestParam(name  = "firstNameLike", required = false) String firstNameLike,
+    public EmployeeResultList getAllEmployees(@RequestParam(name  = "firstNameLike", required = false) String firstNameLike,
                                         @RequestParam(name = "best", required = false, defaultValue = "false") Boolean getBestEmployee) {
 
+        return new EmployeeResultList(getEmployeesAsList(firstNameLike, getBestEmployee));
+    }
+
+    private List<Employee> getEmployeesAsList(final String firstNameLike, final Boolean getBestEmployee) {
         if(getBestEmployee) {
             return List.of(employeeService.findTheBestEmployee());
         }
@@ -28,6 +32,7 @@ public class EmployeeRestController {
         if(firstNameLike != null) {
             return employeeService.findByFirstNameIsLike(firstNameLike);
         }
+
         return employeeService.findEmployees();
     }
 
