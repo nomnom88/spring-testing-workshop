@@ -20,6 +20,9 @@
         <assertj-core.version>3.16.1</assertj-core.version>
         <h2.version>1.4.200</h2.version>
         <spring-security-test.version>5.3.3.RELEASE</spring-security-test.version>
+        <spring-cloud-contract-maven-plugin.version>2.2.3.RELEASE</spring-cloud-contract-maven-plugin.version>
+        <maven-test-runners-plugin.version>2.22.2</maven-test-runners-plugin.version>
+        <spring-boot-maven-plugin.version>2.3.1.RELEASE</spring-boot-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -92,6 +95,13 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-contract-verifier</artifactId>
+            <scope>test</scope>
+            <version>${spring-cloud-contract-maven-plugin.version}</version>
+        </dependency>
+
         <!-- TESTING -->
 
     </dependencies>
@@ -101,14 +111,25 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot-maven-plugin.version}</version>
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>${maven-test-runners-plugin.version}</version>
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>${maven-test-runners-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-contract-maven-plugin</artifactId>
+                <version>${spring-cloud-contract-maven-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <baseClassForTests>nl.sourcelabs.workshop.testing.application.contract.ContractTestBase</baseClassForTests>
+                    <testFramework>JUNIT5</testFramework>
+                </configuration>
             </plugin>
         </plugins>
     </build>
