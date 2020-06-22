@@ -7,6 +7,7 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.Type;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,16 @@ import lombok.Setter;
 @Setter
 public class Employee {
 
+    public Employee() {
+    }
+
+    @Builder
+    public Employee(final UUID id, final String firstName, final String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     @Id
     @Type(type = "org.hibernate.type.UUIDCharType")
     private UUID id;
@@ -22,5 +33,7 @@ public class Employee {
     private String firstName;
 
     private String lastName;
+
+
 
 }
