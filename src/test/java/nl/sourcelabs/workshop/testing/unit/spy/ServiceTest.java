@@ -13,7 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 public class ServiceTest {
 
     @Spy
-    private MathUtil mathUtil = new MathUtil();
+    private MathUtil mathUtil;
 
     @InjectMocks
     private Service sut;
