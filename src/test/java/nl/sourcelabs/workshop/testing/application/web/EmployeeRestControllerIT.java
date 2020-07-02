@@ -22,7 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 @WebMvcTest
-class EmployeeRestControllerITTest {
+class EmployeeRestControllerIT {
 
     private static final String API_ENDPOINT = "/api/employees";
     private static final String SECURE_ENDPOINT = "/api/secure";
