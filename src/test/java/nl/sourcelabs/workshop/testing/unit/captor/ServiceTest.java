@@ -24,7 +24,7 @@ public class ServiceTest {
     private ArgumentCaptor<Request> requestArgumentCaptor;
 
     @InjectMocks
-    private Service service;
+    private Service sut;
 
     @Test
     public void given_message_thenExpect_clientCalledWithAppropriateRequest() {
@@ -32,7 +32,7 @@ public class ServiceTest {
         final String message = "My Message Text";
         final String expectedPrefix = Service.APP_ID + " ";
 
-        service.sendRequest(message);
+        sut.sendRequest(message);
 
         // If not using annotation this is the programmatic equivalent
         //final ArgumentCaptor<Request> requestArgumentCaptor = ArgumentCaptor.forClass(Request.class);
