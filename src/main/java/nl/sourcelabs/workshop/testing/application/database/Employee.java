@@ -16,6 +16,14 @@ import lombok.Setter;
 @Setter
 public class Employee {
 
+    private String firstName;
+
+    @Id
+    @Type(type = "org.hibernate.type.UUIDCharType")
+    private UUID id;
+
+    private String lastName;
+
     public Employee() {
     }
 
@@ -25,15 +33,5 @@ public class Employee {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
-    @Id
-    @Type(type = "org.hibernate.type.UUIDCharType")
-    private UUID id;
-
-    private String firstName;
-
-    private String lastName;
-
-
 
 }
