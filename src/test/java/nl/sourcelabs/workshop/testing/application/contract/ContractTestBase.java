@@ -47,7 +47,6 @@ public class ContractTestBase {
 
         when(employeeService.findEmployees()).thenReturn(List.of(employee1, employee2, employee3));
 
-
         RestAssuredMockMvc.webAppContextSetup(webApplicationContext);
 
     }
