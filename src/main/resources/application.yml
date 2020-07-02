@@ -7,3 +7,5 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.Oracle10gDialect
+  application:
+    name: Sourcelabs - Spring Testing Workshop App
