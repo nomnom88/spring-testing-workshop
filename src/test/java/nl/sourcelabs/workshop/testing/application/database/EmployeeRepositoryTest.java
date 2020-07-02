@@ -83,6 +83,9 @@ public class EmployeeRepositoryTest {
         final Employee thirdEmployeeMatch = thirdEmployeeMatchResult.get(0);
         assertThat(thirdEmployeeMatch).isEqualTo(persistedEmployee);
 
+        final List<Employee> noMatch = sut.findByFirstNameIsLike("NotBruceWayne");
+        assertThat(noMatch).hasSize(0);
+
     }
 
     @Test
