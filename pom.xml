@@ -27,13 +27,7 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-        </dependency>
-
-        <!-- SPRING -->
+       <!-- SPRING -->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -102,7 +96,7 @@
             <version>${spring-cloud-contract-maven-plugin.version}</version>
         </dependency>
 
-        <!-- TESTING -->
+        <!-- END TESTING -->
 
     </dependencies>
 

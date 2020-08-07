@@ -1,11 +1,12 @@
 package nl.sourcelabs.workshop.testing.unit.spy;
 
-import lombok.RequiredArgsConstructor;
-
-@RequiredArgsConstructor
 public class Service {
 
     private final MathUtil mathUtil;
+
+    public Service(final MathUtil mathUtil) {
+        this.mathUtil = mathUtil;
+    }
 
     public int add(final int a, final int b) {
         final int result = mathUtil.doVeryVeryComplicatedCalculation(a, b);

@@ -9,6 +9,7 @@ import java.util.UUID;
 import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -39,13 +40,14 @@ public class EmployeeRepositoryTest {
     }
 
     @Test
+    @DisplayName("NO WAYYY🙊")
     void findTheBestEmployee() {
 
         final String expectedFirstName = "Duncan";
         final String expectedLastName = "Campbell";
         final UUID expectedId = UUID.randomUUID();
 
-        makeAndPersistEmployee(expectedFirstName, expectedLastName, expectedId);
+        final Employee persistedEmployee = makeAndPersistEmployee(expectedFirstName, expectedLastName, expectedId);
 
         final Optional<Employee> result = sut.findTheBestEmployee();
 
@@ -57,7 +59,7 @@ public class EmployeeRepositoryTest {
         assertThat(employeeResult.getLastName()).isEqualTo(expectedLastName);
         assertThat(employeeResult.getId()).isEqualTo(expectedId);
 
-        assertThat(employeeResult).isEqualToComparingFieldByField(employeeResult); //does the same as the previous 3 lines
+        assertThat(employeeResult).usingRecursiveComparison().isEqualTo(persistedEmployee); //does the same as the previous 3 lines
     }
 
     @Test

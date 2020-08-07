@@ -8,8 +8,6 @@ import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import lombok.Getter;
-
 public class ServiceTestWithoutArgCaptorTest {
 
     private MyClient client;
@@ -39,7 +37,7 @@ public class ServiceTestWithoutArgCaptorTest {
         sut = new Service(client);
     }
 
-    @Getter
+
     public class MyClient extends Client {
 
         private Request sentRequest;
@@ -47,6 +45,10 @@ public class ServiceTestWithoutArgCaptorTest {
         @Override
         public void sendRequest(final Request input) {
             this.sentRequest = input;
+        }
+
+        public Request getSentRequest() {
+            return sentRequest;
         }
     }
 }

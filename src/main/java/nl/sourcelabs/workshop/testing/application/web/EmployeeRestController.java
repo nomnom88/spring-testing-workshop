@@ -10,14 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import lombok.RequiredArgsConstructor;
-
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api")
 public class EmployeeRestController {
 
     private final EmployeeService employeeService;
+
+    public EmployeeRestController(final EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @GetMapping(path = "/secure")
     public String securedEndpoint() {
@@ -25,10 +26,9 @@ public class EmployeeRestController {
     }
 
     @GetMapping(path = "/employees")
-    public EmployeeResultList getAllEmployees(@RequestParam(name  = "firstNameLike", required = false) String firstNameLike,
-                                        @RequestParam(name = "best", required = false, defaultValue = "false") Boolean getBestEmployee) {
-
-        return new EmployeeResultList(getEmployeesAsList(firstNameLike, getBestEmployee));
+    public EmployeeResultList getAllEmployees(@RequestParam(required = false) String firstNameLike,
+                                        @RequestParam(required = false, defaultValue = "false") Boolean best) {
+        return new EmployeeResultList(getEmployeesAsList(firstNameLike, best));
     }
 
     private List<Employee> getEmployeesAsList(final String firstNameLike, final Boolean getBestEmployee) {

@@ -36,11 +36,10 @@ class EmployeeRestControllerIT {
     @Test
     void given_bestEmployeePresent_when_bestFlagTrue_then_onlyBestEmployeeReturned() throws Exception {
 
-        final Employee bestEmployee = Employee.builder()
-                .firstName("Hardcore")
-                .lastName("Henry")
-                .id(randomUUID())
-                .build();
+        final Employee bestEmployee = new Employee();
+        bestEmployee.setFirstName("Hardcore");
+        bestEmployee.setLastName("Henry");
+        bestEmployee.setId(randomUUID());
 
         when(employeeService.findTheBestEmployee()).thenReturn(bestEmployee);
 
@@ -60,23 +59,20 @@ class EmployeeRestControllerIT {
     @Test
     void given_employees_when_allEmployeesRequested_then_allEmployeesReturned() throws Exception {
 
-        final Employee employeeOne = Employee.builder()
-                .firstName("Duncan")
-                .lastName("Campbell")
-                .id(randomUUID())
-                .build();
+        final Employee employeeOne = new Employee();
+        employeeOne.setFirstName("Duncan");
+        employeeOne.setLastName("Campbell");
+        employeeOne.setId(randomUUID());
 
-        final Employee employeeTwo = Employee.builder()
-                .firstName("Hardcore")
-                .lastName("Henry")
-                .id(randomUUID())
-                .build();
+        final Employee employeeTwo = new Employee();
+        employeeTwo.setFirstName("Hardcore");
+        employeeTwo.setLastName("Henry");
+        employeeTwo.setId(randomUUID());
 
-        final Employee employeeThree = Employee.builder()
-                .firstName("Willy")
-                .lastName("Wonka")
-                .id(randomUUID())
-                .build();
+        final Employee employeeThree = new Employee();
+        employeeThree.setFirstName("Willy");
+        employeeThree.setLastName("Wonka");
+        employeeThree.setId(randomUUID());
 
         when(employeeService.findEmployees()).thenReturn(List.of(employeeOne, employeeTwo, employeeThree));
 
@@ -102,17 +98,15 @@ class EmployeeRestControllerIT {
     @Test
     void given_findByFirstNameLike_when_partOfFirstNameSubmitted_then_onlyMatchingNamesReturned() throws Exception {
 
-        final Employee employeeOne = Employee.builder()
-                .firstName("match1")
-                .lastName("lastName1")
-                .id(randomUUID())
-                .build();
+        final Employee employeeOne = new Employee();
+        employeeOne.setFirstName("match1");
+        employeeOne.setLastName("lastName1");
+        employeeOne.setId(randomUUID());
 
-        final Employee employeeTwo = Employee.builder()
-                .firstName("Another-match2")
-                .lastName("lastName1")
-                .id(randomUUID())
-                .build();
+        final Employee employeeTwo = new Employee();
+        employeeTwo.setFirstName("Another-match2");
+        employeeTwo.setLastName("lastName1");
+        employeeTwo.setId(randomUUID());
 
         final String firstNameLikeParam = "at";
         when(employeeService.findByFirstNameIsLike(firstNameLikeParam)).thenReturn(List.of(employeeOne, employeeTwo));

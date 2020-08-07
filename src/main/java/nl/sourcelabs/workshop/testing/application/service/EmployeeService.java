@@ -9,13 +9,14 @@ import nl.sourcelabs.workshop.testing.application.exception.BestEmployeeMissingE
 
 import org.springframework.stereotype.Service;
 
-import lombok.RequiredArgsConstructor;
-
 @Service
-@RequiredArgsConstructor
 public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+
+    public EmployeeService(final EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
 
     public Employee findTheBestEmployee() {
         return employeeRepository.findTheBestEmployee().orElseThrow(BestEmployeeMissingException::new);

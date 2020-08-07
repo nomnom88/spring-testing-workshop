@@ -4,15 +4,19 @@ import java.util.List;
 
 import nl.sourcelabs.workshop.testing.application.database.Employee;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-
-@RequiredArgsConstructor
-@Getter
-@Setter
 public class EmployeeResultList {
 
-    private final List<Employee> employees;
+    private List<Employee> employees;
 
+    public EmployeeResultList(final List<Employee> employees) {
+        this.employees = employees;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(final List<Employee> employees) {
+        this.employees = employees;
+    }
 }

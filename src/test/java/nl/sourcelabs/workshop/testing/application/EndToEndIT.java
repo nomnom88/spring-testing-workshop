@@ -16,7 +16,7 @@ import org.springframework.http.HttpStatus;
 
 import io.restassured.RestAssured;
 
-@SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest( webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class EndToEndIT {
 
     private Employee employee;

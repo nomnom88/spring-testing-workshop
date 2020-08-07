@@ -7,31 +7,38 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.Type;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-
 @Entity
-@Getter
-@Setter
 public class Employee {
-
-    private String firstName;
 
     @Id
     @Type(type = "org.hibernate.type.UUIDCharType")
     private UUID id;
 
+    private String firstName;
+
     private String lastName;
 
-    public Employee() {
+    public UUID getId() {
+        return id;
     }
 
-    @Builder
-    public Employee(final UUID id, final String firstName, final String lastName) {
+    public void setId(final UUID id) {
         this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(final String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(final String lastName) {
         this.lastName = lastName;
     }
-
 }

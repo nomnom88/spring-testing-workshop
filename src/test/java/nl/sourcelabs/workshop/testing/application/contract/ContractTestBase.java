@@ -29,21 +29,20 @@ public class ContractTestBase {
 
     @BeforeEach
     public void setUp() {
-        final Employee employee1 = Employee.builder()
-                .firstName("Hardcore")
-                .lastName("Henry")
-                .id(randomUUID())
-                .build();
-        final Employee employee2 = Employee.builder()
-                .firstName("Duncan")
-                .lastName("Campbell")
-                .id(randomUUID())
-                .build();
-        final Employee employee3 = Employee.builder()
-                .firstName("Vladimir")
-                .lastName("Putin")
-                .id(randomUUID())
-                .build();
+        final Employee employee1 = new Employee();
+        employee1.setFirstName("Hardcore");
+        employee1.setLastName("Henry");
+        employee1.setId(randomUUID());
+
+        final Employee employee2 = new Employee();
+        employee2.setFirstName("Duncan");
+        employee2.setLastName("Campbell");
+        employee2.setId(randomUUID());
+
+        final Employee employee3 = new Employee();
+        employee3.setFirstName("Vladimir");
+        employee3.setLastName("Putin");
+        employee3.setId(randomUUID());
 
         when(employeeService.findEmployees()).thenReturn(List.of(employee1, employee2, employee3));
 
