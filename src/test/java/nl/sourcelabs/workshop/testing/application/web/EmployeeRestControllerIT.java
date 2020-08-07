@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpHeaders;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
@@ -134,8 +135,17 @@ class EmployeeRestControllerIT {
         final String encodedCredentials = Base64.getEncoder()
                 .encodeToString("user:password".getBytes());
 
-        mockMvc.perform(MockMvcRequestBuilders.get(SECURE_ENDPOINT)
-                .header(HttpHeaders.AUTHORIZATION, "Basic "+encodedCredentials))
+        mockMvc.perform(MockMvcRequestBuilders.get(SECURE_ENDPOINT).header(HttpHeaders.AUTHORIZATION, "Basic "+encodedCredentials))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Only authenticated users can see this message"));
+
+    }
+
+    @Test
+    @WithMockUser(roles = "ADMIN")
+    void given_authenticatedUserInjectedAsMockUser_when_credentialsSuppliedOnSecureEndpoint_then_messageReturned() throws Exception {
+
+        mockMvc.perform(MockMvcRequestBuilders.get(SECURE_ENDPOINT))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Only authenticated users can see this message"));
 

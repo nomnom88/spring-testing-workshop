@@ -14,13 +14,15 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private static final String ADMIN_ROLE = "ADMIN";
+
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
         UserDetails user = User.withDefaultPasswordEncoder()
                 .username("user")
                 .password("password")
-                .roles("USER")
+                .roles(ADMIN_ROLE)
                 .build();
 
         return new InMemoryUserDetailsManager(user);
@@ -32,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/employees")
                 .permitAll()
                 .antMatchers("/api/secure")
-                .authenticated()
+                .hasRole(ADMIN_ROLE)
                 .and()
                 .httpBasic();
     }
