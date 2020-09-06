@@ -1,6 +1,6 @@
 package nl.sourcelabs.workshop.testing.unit.mock;
 
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class A2BMapperWithEverythingMockedWithoutExtensionTest {
@@ -14,7 +14,7 @@ public class A2BMapperWithEverythingMockedWithoutExtensionTest {
     //BEFORE-EACH
 
     @Test
-    @Ignore
+    @Disabled
     public void given_anA_when_mappedToB_thenExpect_allFieldsMappedCorrectly() {
     }
 

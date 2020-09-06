@@ -34,6 +34,7 @@ public class A2BMapperTest {
         final B output = sut.map(input);
 
         assertThat(output.getFullName()).isEqualTo(expectedFullName);
+        assertThat(output.getAge()).isEqualTo(expectedAge);
     }
 
 }

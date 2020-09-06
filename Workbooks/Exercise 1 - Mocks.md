@@ -62,12 +62,12 @@ Finally, we inject the dependency into our SUT.
 
 Let's now set up the actual test.
 
-> @Ignore: Turns off a test.
+> @Disabled: Turns off a test.
 
 Replace :
 ```java
     @Test
-    @Ignore
+    @Disabled
     public void given_anA_when_mappedToB_thenExpect_allFieldsMappedCorrectly() {
     }
 ```
@@ -202,4 +202,4 @@ drunkenly take a stab in the dark and pick one of them. What if the constructor 
 When things are not **100% unambiguous** for Mockito then it's best to do things **programmatically**.
 
 
-Finally remove @Ignore and run the test.
+Finally remove @Disabled and run the test.
