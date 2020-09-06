@@ -142,4 +142,64 @@ Add
 ```java
 @ExtendWith(MockitoExtension.class)
 ``` 
-To the class declaration.
+To the class declaration. This allows Mockito to scan our test class for Mockito annotations and take necessary actions.
+
+Add
+```java
+@Mock
+``` 
+to the two fields we mocked by calling Mockito.mock() in **A2BMapperWithEverythingMockedWithoutExtensionTest**
+
+thus:
+```java
+@Mock
+private A input;
+
+@Mock
+private AgeLookupService ageLookupService;
+```
+
+If we were to start the test now then Mockito would effectively do the following:
+```java
+private A input = Mockito.mock(A.class);
+
+private AgeLookupService ageLookupService = Mockito.mock(AgeLookupService.class );
+```
+
+Next we can tell Mockito to construct a **real** instance of our SUT but to inject our Mocks as dependencies.
+
+Add this annotation to our SUT:
+```java
+    @InjectMocks
+    private A2BMapper sut;
+```
+
+Mockito will look at the constructor of A2BMapper:
+```java
+public A2BMapper(final AgeLookupService ageLookupService) {
+        this.ageLookupService = ageLookupService;
+    }
+```
+and see that we need an AgeLookupService parameter. 
+Mockito then looks at which Mocks it has created with @Mock.
+We have two: a mocked 'A' and a mocked 'AgeLookupService'.
+
+Bingo.
+
+Mockito will then _effectively_ run the following during test execution:
+```java
+    private A2BMapper sut = new A2BMapper(ageLookupService);
+```
+
+The mocked instance of 'A' is just left alone during this _InjectMocks_ process.
+
+You can probably also start to see what the limitations of Mockito are. It's doing it's best
+guess. It sees we need an AgeLookupService parameter sees we have one lying around and just plonks it into the constructor.
+
+But what if we have two mocked instances of AgeLookupService in our test? Then Mockito will just
+drunkenly take a stab in the dark and pick one of them. What if the constructor contains two AgeLookupService's ? Then mockito will just reuse whichever mock it finds twice.
+
+When things are not **100% unambiguous** for Mockito then it's best to do things **programmatically**.
+
+
+Finally remove @Ignore and run the test.
