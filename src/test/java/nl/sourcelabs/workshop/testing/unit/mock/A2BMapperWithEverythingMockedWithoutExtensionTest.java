@@ -1,7 +1,7 @@
 package nl.sourcelabs.workshop.testing.unit.mock;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -10,16 +10,13 @@ import org.mockito.Mockito;
 
 public class A2BMapperWithEverythingMockedWithoutExtensionTest {
 
-    private A input;
-
     private AgeLookupService ageLookupService;
 
     private A2BMapper sut;
 
     @BeforeEach
-    public void doWhatTheMockitoRunnerDoesForUs() {
-        input = Mockito.mock(A.class);
-        ageLookupService = mock(AgeLookupService.class);
+    public void doWhatTheMockitoExtensionDoesForUs() {
+        ageLookupService = Mockito.mock(AgeLookupService.class);
         sut = new A2BMapper(ageLookupService);
     }
 
@@ -30,15 +27,20 @@ public class A2BMapperWithEverythingMockedWithoutExtensionTest {
         final String expectedFullName = firstName + " " + lastName;
         final Integer expectedAge = 123;
 
-        when(input.getFirstName()).thenReturn(firstName);
-        when(input.getLastName()).thenReturn(lastName);
+        final A input = new A();
+        input.setFirstName(firstName);
+        input.setLastName(lastName);
+
         when(ageLookupService.lookupAge(firstName, lastName)).thenReturn(expectedAge);
 
         final B output = sut.map(input);
 
-        assertThat(output).isNotNull();
         assertThat(output.getFullName()).isEqualTo(expectedFullName);
         assertThat(output.getAge()).isEqualTo(expectedAge);
+
+        verify(ageLookupService).lookupAge(firstName, lastName);
+
+
     }
 
 }

@@ -11,7 +11,7 @@ public class AgeLookupService {
          */
 
 
-        return (int) (Math.random() * 100);
+        return 123;
     }
 
 

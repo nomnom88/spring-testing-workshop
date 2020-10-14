@@ -34,9 +34,6 @@ public class ServiceTest {
 
         sut.sendRequest(message);
 
-        // If not using annotation this is the programmatic equivalent
-        //final ArgumentCaptor<Request> requestArgumentCaptor = ArgumentCaptor.forClass(Request.class);
-
         verify(client).sendRequest(requestArgumentCaptor.capture());
 
         final Request sentRequest = requestArgumentCaptor.getValue();

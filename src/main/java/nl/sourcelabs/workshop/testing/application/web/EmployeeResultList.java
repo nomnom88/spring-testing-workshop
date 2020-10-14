@@ -8,6 +8,9 @@ public class EmployeeResultList {
 
     private List<Employee> employees;
 
+    public EmployeeResultList() {
+    }
+
     public EmployeeResultList(final List<Employee> employees) {
         this.employees = employees;
     }

@@ -1,6 +1,7 @@
 package nl.sourcelabs.workshop.testing.unit.spy;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,8 @@ public class ServiceTest {
         final int a = 666;
         final int b = 69;
         final int expected = a + b;
+
+        doReturn(expected).when(mathUtil).doVeryVeryComplicatedCalculation(a,b);
 
         final int result = sut.add(a, b);
 
