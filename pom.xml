@@ -18,7 +18,7 @@
         <ojdbc8.version>19.6.0.0</ojdbc8.version>
 
         <assertj-core.version>3.16.1</assertj-core.version>
-        <h2.version>2.1.210</h2.version>
+        <h2.version>2.2.220</h2.version>
         <spring-security-test.version>5.3.3.RELEASE</spring-security-test.version>
         <spring-cloud-contract-maven-plugin.version>2.2.3.RELEASE</spring-cloud-contract-maven-plugin.version>
         <maven-test-runners-plugin.version>2.22.2</maven-test-runners-plugin.version>
